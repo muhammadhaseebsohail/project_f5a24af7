@@ -1,0 +1,59 @@
+The styled-components library is used for styling in the given component, so the styles are included directly in the component using JavaScript syntax. Therefore, you don't need to create a separate CSS Module for this component.
+
+However, if you want to convert the styled-components to CSS Modules, you would create a separate CSS file, say `SignupForm.module.css` and your CSS would look like this:
+
+```css
+/* SignupForm.module.css */
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.errorMessage {
+  color: red;
+}
+```
+
+Then, you'd import the styles in your component and apply them like this:
+
+```jsx
+// Necessary imports
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './SignupForm.module.css';
+
+// Component
+const SignupForm = ({ onSubmit }) => {
+  /* ...rest of the component code... */
+
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <input
+        className={styles.input}
+        type="text"
+        name="username"
+        value={formState.username}
+        onChange={handleChange}
+        placeholder="Username"
+      />
+      {errors.username && <span className={styles.errorMessage}>{errors.username}</span>}
+      {/* ...rest of the form fields... */}
+      <input className={styles.input} type="submit" value="Sign Up" />
+    </form>
+  );
+};
+
+// PropTypes
+SignupForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default SignupForm;
+```
+
+In this modified version of the component, we're using CSS Modules for styling. The styles are imported from a separate CSS file and applied to the elements using className.
