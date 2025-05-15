@@ -1,0 +1,67 @@
+Here is the equivalent CSS module for the above Styled Component:
+
+1. First, create a new CSS module file named "ResponsiveCard.module.css".
+
+```css
+/* ResponsiveCard.module.css */
+
+.cardContainer {
+  padding: 20px;
+  margin: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.description {
+  font-size: 1em;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .cardContainer {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .title {
+    font-size: 1.2em;
+  }
+
+  .description {
+    font-size: 0.8em;
+  }
+}
+```
+
+2. Then, modify the React component to use the CSS module:
+
+```jsx
+// Necessary imports
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './ResponsiveCard.module.css'; // Importing CSS Module
+
+// Main component
+const ResponsiveCard = ({ title, description }) => (
+  <div className={styles.cardContainer}>
+    <h2 className={styles.title}>{title}</h2>
+    <p className={styles.description}>{description}</p>
+  </div>
+);
+
+// Prop Types for component
+ResponsiveCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
+
+// Export statement
+export default ResponsiveCard;
+```
+
+In this version of the component, we're using CSS modules instead of styled-components. The CSS is written in a separate .css file and imported into the component. The styles are applied by referencing them as properties on the imported `styles` object. This approach can be beneficial if you prefer to keep your styles separate from your JavaScript code, or if you're working in a codebase that doesn't use styled-components.
